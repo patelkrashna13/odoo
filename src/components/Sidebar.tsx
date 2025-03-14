@@ -9,7 +9,8 @@ import {
   HelpCircle,
   Leaf,
   User,
-  SmartphoneIcon
+  SmartphoneIcon,
+  LogOut
 } from 'lucide-react';
 import { UserProfile } from '../types/user';
 
@@ -18,20 +19,26 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ userProfile }: SidebarProps) => {
+  const navigate = useNavigate();
+  
   const menuItems = [
     { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
     { path: '/data-entry', icon: FileInput, label: 'Data Entry' },
     { path: '/reports', icon: BarChart2, label: 'Reports' },
     { path: '/ml-insights', icon: Brain, label: 'ML Insights' },
     { path: '/digital-wellbeing', icon: SmartphoneIcon, label: 'Digital Wellbeing' },
-
-
     { path: '/settings', icon: SettingsIcon, label: 'Settings' },
     { path: '/help', icon: HelpCircle, label: 'Help' },
   ];
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
+
   return (
-    <div className="w-64 bg-white border-r border-gray-200 p-4">
+    <div className="w-64 bg-white border-r border-gray-200 p-4 flex flex-col h-full">
       <div className="flex items-center gap-2 mb-8">
         <Leaf className="h-8 w-8 text-green-600" />
         <h1 className="text-xl font-bold text-gray-800">Carbon Tracker</h1>
@@ -44,7 +51,7 @@ const Sidebar = ({ userProfile }: SidebarProps) => {
               <User className="h-6 w-6 text-green-600" />
             </div>
             <div>
-              <h3 className="font-medium text-gray-900">{userProfile.full_name}</h3>
+              <h3 className="font-medium text-gray-900">{userProfile.fullName}</h3>
               <p className="text-sm text-gray-500">{userProfile.occupation}</p>
             </div>
           </div>
@@ -57,7 +64,7 @@ const Sidebar = ({ userProfile }: SidebarProps) => {
         </div>
       )}
 
-      <nav className="space-y-2">
+      <nav className="space-y-2 flex-grow">
         {menuItems.map((item) => (
           <NavLink
             key={item.path}
@@ -75,6 +82,15 @@ const Sidebar = ({ userProfile }: SidebarProps) => {
           </NavLink>
         ))}
       </nav>
+      
+      {/* Logout button */}
+      <button
+        onClick={handleLogout}
+        className="mt-auto flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-gray-600 hover:bg-red-50 hover:text-red-700"
+      >
+        <LogOut className="h-5 w-5" />
+        <span>Logout</span>
+      </button>
     </div>
   );
 };
