@@ -9,6 +9,7 @@ import MLInsights from './pages/MLInsights';
 import Settings from './pages/Settings';
 import Help from './pages/Help';
 import Login from './pages/Login';
+import DigitalWellbeing from './pages/DigitalWellbeing';
 import { UserProfile } from './types/user';
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
               <Route path="/data-entry" element={<DataEntry />} />
               <Route path="/reports" element={<Reports />} />
               <Route path="/ml-insights" element={<MLInsights />} />
+              <Route path="/digital-wellbeing" element={<DigitalWellbeing />} />
               <Route path="/settings" element={<Settings  />} />
               <Route path="/help" element={<Help />} />
               <Route path="*" element={<Navigate to="/" replace />} />

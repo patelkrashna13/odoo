@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+
+import { NavLink, useNavigate } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   FileInput, 
@@ -8,7 +8,8 @@ import {
   Settings as SettingsIcon, 
   HelpCircle,
   Leaf,
-  User
+  User,
+  SmartphoneIcon
 } from 'lucide-react';
 import { UserProfile } from '../types/user';
 
@@ -22,6 +23,9 @@ const Sidebar = ({ userProfile }: SidebarProps) => {
     { path: '/data-entry', icon: FileInput, label: 'Data Entry' },
     { path: '/reports', icon: BarChart2, label: 'Reports' },
     { path: '/ml-insights', icon: Brain, label: 'ML Insights' },
+    { path: '/digital-wellbeing', icon: SmartphoneIcon, label: 'Digital Wellbeing' },
+
+
     { path: '/settings', icon: SettingsIcon, label: 'Settings' },
     { path: '/help', icon: HelpCircle, label: 'Help' },
   ];
